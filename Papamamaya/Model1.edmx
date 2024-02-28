@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище stModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tovari">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="1000" />
+          <Property Name="size" Type="nchar" MaxLength="10" />
+          <Property Name="cvet" Type="varchar" MaxLength="1000" />
+          <Property Name="sostav" Type="varchar" MaxLength="1000" />
+          <Property Name="prod" Type="varchar" MaxLength="1000" />
+          <Property Name="cena" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zakaz">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="1000" />
+          <Property Name="data" Type="date" />
+          <Property Name="zakazchik" Type="varchar" MaxLength="1000" />
+          <Property Name="manager" Type="varchar" MaxLength="1000" />
+          <Property Name="status" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityContainer Name="Хранилище stModelContainer">
+          <EntitySet Name="tovari" EntityType="Self.tovari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zakaz" EntityType="Self.zakaz" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="stModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tovari">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="size" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="cvet" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="sostav" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="prod" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="cena" Type="Int32" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zakaz">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="data" Type="DateTime" Precision="0" />
+          <Property Name="zakazchik" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="manager" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="stEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tovari" EntityType="Self.tovari" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <EntitySet Name="zakaz" EntityType="Self.zakaz" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище stModelContainer" CdmEntityContainer="stEntities3">
+          <EntitySetMapping Name="tovari">
+            <EntityTypeMapping TypeName="stModel.tovari">
+              <MappingFragment StoreEntitySet="tovari">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="cvet" ColumnName="cvet" />
+                <ScalarProperty Name="sostav" ColumnName="sostav" />
+                <ScalarProperty Name="prod" ColumnName="prod" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="stModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zakaz">
+            <EntityTypeMapping TypeName="stModel.zakaz">
+              <MappingFragment StoreEntitySet="zakaz">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="zakazchik" ColumnName="zakazchik" />
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

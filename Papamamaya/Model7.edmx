@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище practicaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cvet">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="int" Nullable="false" />
+          <Property Name="kodcveta" Type="int" />
+        </EntityType>
+        <EntityType Name="cvet1">
+          <Key>
+            <PropertyRef Name="kod_cveta" />
+          </Key>
+          <Property Name="kod_cveta" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="furnitura">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="shirina" Type="float" />
+          <Property Name="dlina" Type="float" />
+          <Property Name="kodtipa" Type="int" />
+          <Property Name="cena" Type="int" />
+          <Property Name="ves" Type="int" />
+        </EntityType>
+        <EntityType Name="furnitura_izdeliya">
+          <Key>
+            <PropertyRef Name="articul_furnitura" />
+          </Key>
+          <Property Name="articul_furnitura" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="articul_izdeliya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="razmeshenie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="povorot" Type="int" Nullable="false" />
+          <Property Name="kolichestvo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="furnituraizdeliya">
+          <Key>
+            <PropertyRef Name="articul_furnityura" />
+          </Key>
+          <Property Name="articul_furnityura" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="articul_izdeliya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="razmeshenie" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="povorot" Type="int" Nullable="false" />
+          <Property Name="kolichestvo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="izdeliya">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="shirina" Type="int" />
+          <Property Name="dlina" Type="int" />
+        </EntityType>
+        <EntityType Name="risunok">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="kod_risunka" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kod_risunka" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="risunoktkani">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="int" Nullable="false" />
+          <Property Name="kodrisunka" Type="int" />
+        </EntityType>
+        <EntityType Name="skladfurniturra">
+          <Key>
+            <PropertyRef Name="partia" />
+          </Key>
+          <Property Name="partia" Type="int" Nullable="false" />
+          <Property Name="articul_furnitura" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kolichestvo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="skladtkani">
+          <Key>
+            <PropertyRef Name="rulon" />
+          </Key>
+          <Property Name="articul_tkami" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="rulon" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dlina" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sostav">
+          <Key>
+            <PropertyRef Name="kod_sostava" />
+          </Key>
+          <Property Name="kod_sostava" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sostavtkani">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="int" Nullable="false" />
+          <Property Name="kodsostava" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tcanicvet">
+          <Key>
+            <PropertyRef Name="tkani_cvet" />
+            <PropertyRef Name="kod_sostava" />
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="tkani_cvet" Type="int" Nullable="false" />
+          <Property Name="kod_sostava" Type="int" Nullable="false" />
+          <Property Name="articul" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tip">
+          <Key>
+            <PropertyRef Name="kodtipa" />
+          </Key>
+          <Property Name="kodtipa" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="tipfurnitura">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="kodtipa" Type="int" />
+        </EntityType>
+        <EntityType Name="tkan1">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="kodcveta" Type="int" />
+          <Property Name="kodrisunka" Type="int" />
+          <Property Name="kodsostava" Type="int" />
+          <Property Name="shirina" Type="int" />
+          <Property Name="dlina" Type="int" />
+          <Property Name="cena" Type="int" />
+        </EntityType>
+        <EntityType Name="tkani">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="shirina" Type="int" Nullable="false" />
+          <Property Name="dlina" Type="int" Nullable="false" />
+          <Property Name="cena" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tkani_izdeliya">
+          <Key>
+            <PropertyRef Name="artikul_tkani" />
+          </Key>
+          <Property Name="artikul_tkani" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="articul_izdeliya" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zakaz">
+          <Key>
+            <PropertyRef Name="nomer" />
+          </Key>
+          <Property Name="nomer" Type="int" Nullable="false" />
+          <Property Name="data" Type="datetime" Nullable="false" />
+          <Property Name="etap_vypolneniya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="zakazchik" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="manager" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zakazan_izdeliya">
+          <Key>
+            <PropertyRef Name="nomer_zakaza" />
+          </Key>
+          <Property Name="nomer_zakaza" Type="int" Nullable="false" />
+          <Property Name="articul_izdeliya" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kolichestvo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Хранилище practicaModelContainer">
+          <EntitySet Name="cvet" EntityType="Self.cvet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cvet1" EntityType="Self.cvet1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="furnitura" EntityType="Self.furnitura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="furnitura_izdeliya" EntityType="Self.furnitura_izdeliya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="furnituraizdeliya" EntityType="Self.furnituraizdeliya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="izdeliya" EntityType="Self.izdeliya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="risunok" EntityType="Self.risunok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="risunoktkani" EntityType="Self.risunoktkani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="skladfurniturra" EntityType="Self.skladfurniturra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="skladtkani" EntityType="Self.skladtkani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sostav" EntityType="Self.sostav" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sostavtkani" EntityType="Self.sostavtkani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tcanicvet" EntityType="Self.tcanicvet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tip" EntityType="Self.tip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tipfurnitura" EntityType="Self.tipfurnitura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tkan1" EntityType="Self.tkan1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tkani" EntityType="Self.tkani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tkani_izdeliya" EntityType="Self.tkani_izdeliya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zakaz" EntityType="Self.Zakaz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zakazan_izdeliya" EntityType="Self.zakazan_izdeliya" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="practicaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="cvet">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="Int32" Nullable="false" />
+          <Property Name="kodcveta" Type="Int32" />
+        </EntityType>
+        <EntityType Name="cvet1">
+          <Key>
+            <PropertyRef Name="kod_cveta" />
+          </Key>
+          <Property Name="kod_cveta" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="furnitura">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="shirina" Type="Double" />
+          <Property Name="dlina" Type="Double" />
+          <Property Name="kodtipa" Type="Int32" />
+          <Property Name="cena" Type="Int32" />
+          <Property Name="ves" Type="Int32" />
+        </EntityType>
+        <EntityType Name="furnitura_izdeliya">
+          <Key>
+            <PropertyRef Name="articul_furnitura" />
+          </Key>
+          <Property Name="articul_furnitura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="articul_izdeliya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="razmeshenie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="povorot" Type="Int32" Nullable="false" />
+          <Property Name="kolichestvo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="furnituraizdeliya">
+          <Key>
+            <PropertyRef Name="articul_furnityura" />
+          </Key>
+          <Property Name="articul_furnityura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="articul_izdeliya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="razmeshenie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="povorot" Type="Int32" Nullable="false" />
+          <Property Name="kolichestvo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="izdeliya">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="shirina" Type="Int32" />
+          <Property Name="dlina" Type="Int32" />
+        </EntityType>
+        <EntityType Name="risunok">
+          <Key>
+            <PropertyRef Name="name" />
+            <PropertyRef Name="kod_risunka" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kod_risunka" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="risunoktkani">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="Int32" Nullable="false" />
+          <Property Name="kodrisunka" Type="Int32" />
+        </EntityType>
+        <EntityType Name="skladfurniturra">
+          <Key>
+            <PropertyRef Name="partia" />
+          </Key>
+          <Property Name="partia" Type="Int32" Nullable="false" />
+          <Property Name="articul_furnitura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kolichestvo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="skladtkani">
+          <Key>
+            <PropertyRef Name="rulon" />
+          </Key>
+          <Property Name="articul_tkami" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rulon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dlina" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sostav">
+          <Key>
+            <PropertyRef Name="kod_sostava" />
+          </Key>
+          <Property Name="kod_sostava" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sostavtkani">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="Int32" Nullable="false" />
+          <Property Name="kodsostava" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tcanicvet">
+          <Key>
+            <PropertyRef Name="tkani_cvet" />
+            <PropertyRef Name="kod_sostava" />
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="tkani_cvet" Type="Int32" Nullable="false" />
+          <Property Name="kod_sostava" Type="Int32" Nullable="false" />
+          <Property Name="articul" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tip">
+          <Key>
+            <PropertyRef Name="kodtipa" />
+          </Key>
+          <Property Name="kodtipa" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tipfurnitura">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kodtipa" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tkan1">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="kodcveta" Type="Int32" />
+          <Property Name="kodrisunka" Type="Int32" />
+          <Property Name="kodsostava" Type="Int32" />
+          <Property Name="shirina" Type="Int32" />
+          <Property Name="dlina" Type="Int32" />
+          <Property Name="cena" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tkani">
+          <Key>
+            <PropertyRef Name="articul" />
+          </Key>
+          <Property Name="articul" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="shirina" Type="Int32" Nullable="false" />
+          <Property Name="dlina" Type="Int32" Nullable="false" />
+          <Property Name="cena" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tkani_izdeliya">
+          <Key>
+            <PropertyRef Name="artikul_tkani" />
+          </Key>
+          <Property Name="artikul_tkani" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="articul_izdeliya" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="login" />
+          </Key>
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zakaz">
+          <Key>
+            <PropertyRef Name="nomer" />
+          </Key>
+          <Property Name="nomer" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="etap_vypolneniya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="zakazchik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zakazan_izdeliya">
+          <Key>
+            <PropertyRef Name="nomer_zakaza" />
+          </Key>
+          <Property Name="nomer_zakaza" Type="Int32" Nullable="false" />
+          <Property Name="articul_izdeliya" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kolichestvo" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="practicaEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="cvet" EntityType="Self.cvet" />
+          <EntitySet Name="cvet1" EntityType="Self.cvet1" />
+          <EntitySet Name="furnitura" EntityType="Self.furnitura" />
+          <EntitySet Name="furnitura_izdeliya" EntityType="Self.furnitura_izdeliya" />
+          <EntitySet Name="furnituraizdeliya" EntityType="Self.furnituraizdeliya" />
+          <EntitySet Name="izdeliya" EntityType="Self.izdeliya" />
+          <EntitySet Name="risunok" EntityType="Self.risunok" />
+          <EntitySet Name="risunoktkani" EntityType="Self.risunoktkani" />
+          <EntitySet Name="skladfurniturra" EntityType="Self.skladfurniturra" />
+          <EntitySet Name="skladtkani" EntityType="Self.skladtkani" />
+          <EntitySet Name="sostav" EntityType="Self.sostav" />
+          <EntitySet Name="sostavtkani" EntityType="Self.sostavtkani" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tcanicvet" EntityType="Self.tcanicvet" />
+          <EntitySet Name="tip" EntityType="Self.tip" />
+          <EntitySet Name="tipfurnitura" EntityType="Self.tipfurnitura" />
+          <EntitySet Name="tkan1" EntityType="Self.tkan1" />
+          <EntitySet Name="tkani" EntityType="Self.tkani" />
+          <EntitySet Name="tkani_izdeliya" EntityType="Self.tkani_izdeliya" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <EntitySet Name="Zakaz" EntityType="Self.Zakaz" />
+          <EntitySet Name="zakazan_izdeliya" EntityType="Self.zakazan_izdeliya" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище practicaModelContainer" CdmEntityContainer="practicaEntities2">
+          <EntitySetMapping Name="cvet">
+            <EntityTypeMapping TypeName="practicaModel.cvet">
+              <MappingFragment StoreEntitySet="cvet">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="kodcveta" ColumnName="kodcveta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cvet1">
+            <EntityTypeMapping TypeName="practicaModel.cvet1">
+              <MappingFragment StoreEntitySet="cvet1">
+                <ScalarProperty Name="kod_cveta" ColumnName="kod_cveta" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="furnitura">
+            <EntityTypeMapping TypeName="practicaModel.furnitura">
+              <MappingFragment StoreEntitySet="furnitura">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shirina" ColumnName="shirina" />
+                <ScalarProperty Name="dlina" ColumnName="dlina" />
+                <ScalarProperty Name="kodtipa" ColumnName="kodtipa" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="ves" ColumnName="ves" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="furnitura_izdeliya">
+            <EntityTypeMapping TypeName="practicaModel.furnitura_izdeliya">
+              <MappingFragment StoreEntitySet="furnitura_izdeliya">
+                <ScalarProperty Name="articul_furnitura" ColumnName="articul_furnitura" />
+                <ScalarProperty Name="articul_izdeliya" ColumnName="articul_izdeliya" />
+                <ScalarProperty Name="razmeshenie" ColumnName="razmeshenie" />
+                <ScalarProperty Name="povorot" ColumnName="povorot" />
+                <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="furnituraizdeliya">
+            <EntityTypeMapping TypeName="practicaModel.furnituraizdeliya">
+              <MappingFragment StoreEntitySet="furnituraizdeliya">
+                <ScalarProperty Name="articul_furnityura" ColumnName="articul_furnityura" />
+                <ScalarProperty Name="articul_izdeliya" ColumnName="articul_izdeliya" />
+                <ScalarProperty Name="razmeshenie" ColumnName="razmeshenie" />
+                <ScalarProperty Name="povorot" ColumnName="povorot" />
+                <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="izdeliya">
+            <EntityTypeMapping TypeName="practicaModel.izdeliya">
+              <MappingFragment StoreEntitySet="izdeliya">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shirina" ColumnName="shirina" />
+                <ScalarProperty Name="dlina" ColumnName="dlina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="risunok">
+            <EntityTypeMapping TypeName="practicaModel.risunok">
+              <MappingFragment StoreEntitySet="risunok">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="kod_risunka" ColumnName="kod_risunka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="risunoktkani">
+            <EntityTypeMapping TypeName="practicaModel.risunoktkani">
+              <MappingFragment StoreEntitySet="risunoktkani">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="kodrisunka" ColumnName="kodrisunka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skladfurniturra">
+            <EntityTypeMapping TypeName="practicaModel.skladfurniturra">
+              <MappingFragment StoreEntitySet="skladfurniturra">
+                <ScalarProperty Name="partia" ColumnName="partia" />
+                <ScalarProperty Name="articul_furnitura" ColumnName="articul_furnitura" />
+                <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="skladtkani">
+            <EntityTypeMapping TypeName="practicaModel.skladtkani">
+              <MappingFragment StoreEntitySet="skladtkani">
+                <ScalarProperty Name="articul_tkami" ColumnName="articul_tkami" />
+                <ScalarProperty Name="rulon" ColumnName="rulon" />
+                <ScalarProperty Name="dlina" ColumnName="dlina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sostav">
+            <EntityTypeMapping TypeName="practicaModel.sostav">
+              <MappingFragment StoreEntitySet="sostav">
+                <ScalarProperty Name="kod_sostava" ColumnName="kod_sostava" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sostavtkani">
+            <EntityTypeMapping TypeName="practicaModel.sostavtkani">
+              <MappingFragment StoreEntitySet="sostavtkani">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="kodsostava" ColumnName="kodsostava" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="practicaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tcanicvet">
+            <EntityTypeMapping TypeName="practicaModel.tcanicvet">
+              <MappingFragment StoreEntitySet="tcanicvet">
+                <ScalarProperty Name="tkani_cvet" ColumnName="tkani_cvet" />
+                <ScalarProperty Name="kod_sostava" ColumnName="kod_sostava" />
+                <ScalarProperty Name="articul" ColumnName="articul" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tip">
+            <EntityTypeMapping TypeName="practicaModel.tip">
+              <MappingFragment StoreEntitySet="tip">
+                <ScalarProperty Name="kodtipa" ColumnName="kodtipa" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipfurnitura">
+            <EntityTypeMapping TypeName="practicaModel.tipfurnitura">
+              <MappingFragment StoreEntitySet="tipfurnitura">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="kodtipa" ColumnName="kodtipa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tkan1">
+            <EntityTypeMapping TypeName="practicaModel.tkan1">
+              <MappingFragment StoreEntitySet="tkan1">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="kodcveta" ColumnName="kodcveta" />
+                <ScalarProperty Name="kodrisunka" ColumnName="kodrisunka" />
+                <ScalarProperty Name="kodsostava" ColumnName="kodsostava" />
+                <ScalarProperty Name="shirina" ColumnName="shirina" />
+                <ScalarProperty Name="dlina" ColumnName="dlina" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tkani">
+            <EntityTypeMapping TypeName="practicaModel.tkani">
+              <MappingFragment StoreEntitySet="tkani">
+                <ScalarProperty Name="articul" ColumnName="articul" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="shirina" ColumnName="shirina" />
+                <ScalarProperty Name="dlina" ColumnName="dlina" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tkani_izdeliya">
+            <EntityTypeMapping TypeName="practicaModel.tkani_izdeliya">
+              <MappingFragment StoreEntitySet="tkani_izdeliya">
+                <ScalarProperty Name="artikul_tkani" ColumnName="artikul_tkani" />
+                <ScalarProperty Name="articul_izdeliya" ColumnName="articul_izdeliya" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="practicaModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="role" ColumnName="role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zakaz">
+            <EntityTypeMapping TypeName="practicaModel.Zakaz">
+              <MappingFragment StoreEntitySet="Zakaz">
+                <ScalarProperty Name="nomer" ColumnName="nomer" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="etap_vypolneniya" ColumnName="etap_vypolneniya" />
+                <ScalarProperty Name="zakazchik" ColumnName="zakazchik" />
+                <ScalarProperty Name="manager" ColumnName="manager" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zakazan_izdeliya">
+            <EntityTypeMapping TypeName="practicaModel.zakazan_izdeliya">
+              <MappingFragment StoreEntitySet="zakazan_izdeliya">
+                <ScalarProperty Name="nomer_zakaza" ColumnName="nomer_zakaza" />
+                <ScalarProperty Name="articul_izdeliya" ColumnName="articul_izdeliya" />
+                <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

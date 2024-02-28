@@ -1,0 +1,46 @@
+﻿<Window x:Class="Papamamaya.Добавление_ткани"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Papamamaya"
+        mc:Ignorable="d"
+        Title="Добавление ткани" Height="350" Width="500" Icon="/logo-02.jpg" Background="#ffd1dc">
+    <StackPanel Margin="10" Orientation="Vertical" VerticalAlignment="Center" Height="250">
+        <StackPanel Margin="10" Orientation="Vertical" Background="#ffd1dc" Height="310" HorizontalAlignment="Center" VerticalAlignment="Center">
+         
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5" Text="Артикул"/>
+                <TextBox x:Name="articul" Margin="5"  Width="170" Text="{Binding articul}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5" Text="Название"/>
+                <TextBox x:Name="name" Margin="5"  Width="170" Text="{Binding name}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5" Text="Размер"/>
+                <TextBox x:Name="size" Margin="5"  Width="170" Text="{Binding size}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5" Text="Цвет"/>
+                <TextBox x:Name="cvet" Margin="5"  Width="170" Text="{Binding cvet}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5" Text="Состав"/>
+                <TextBox x:Name="sostav" Margin="5"  Width="170" Text="{Binding sostav}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5" Text="Производитель"/>
+                <TextBox x:Name="prod" Margin="5"  Width="170" Text="{Binding prod}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5" Text="Цена"/>
+                <TextBox x:Name="cena" Margin="5"  Width="170" Text="{Binding cena}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Сохранить" Click="Button_Click_4" />
+                <Button Content="Назад" Click="Button_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>
